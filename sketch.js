@@ -24,6 +24,8 @@ coding plan:
 
  */
 let font
+let particle
+let gravity = new p5.Vector()
 
 function preload() {
     font = loadFont('fonts/Meiryo-01.ttf')
@@ -32,9 +34,13 @@ function preload() {
 function setup() {
     createCanvas(640, 360)
     colorMode(HSB, 360, 100, 100, 100)
-
+    particle = new Particle(width/2, height/2)
+    gravity = new p5.Vector(0, 0.1)
 }
 
 function draw() {
     background(209, 80, 30)
+    particle.show()
+    particle.applyForce(gravity)
+    particle.update()
 }
