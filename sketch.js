@@ -24,7 +24,7 @@ coding plan:
 
  */
 let font
-let particle
+let bob
 let gravity = new p5.Vector()
 
 function preload() {
@@ -34,13 +34,14 @@ function preload() {
 function setup() {
     createCanvas(640, 360)
     colorMode(HSB, 360, 100, 100, 100)
-    particle = new Particle(width/2, height/2)
-    gravity = new p5.Vector(0, 0.1)
+    bob = new Particle(width/2, height/2)
+    gravity = new p5.Vector(0, 0.3)
 }
 
 function draw() {
     background(209, 80, 30)
-    particle.show()
-    particle.applyForce(gravity)
-    particle.update()
+    bob.show()
+    bob.applyForce(gravity)
+    bob.update()
+    bob.checkEdges()
 }
