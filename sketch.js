@@ -24,8 +24,9 @@ coding plan:
 
  */
 let font
-let bob
-let gravity = new p5.Vector()
+let bob, anchor
+let spring
+let gravity
 
 function preload() {
     font = loadFont('fonts/Meiryo-01.ttf')
@@ -34,14 +35,33 @@ function preload() {
 function setup() {
     createCanvas(640, 360)
     colorMode(HSB, 360, 100, 100, 100)
-    bob = new Particle(width/2, height/2)
-    gravity = new p5.Vector(0, 0.3)
+    // for (let i = 0; i < 2; i++) {
+    //     bobs.push(new Particle(random(width), random(height)))
+    // }
+    gravity = new p5.Vector(0, 0.01)
+    bob = new Particle(200, 200)
+    anchor = new Particle(400, 300)
+    spring = new Spring(bob, anchor, 0.01, 200, .96)
 }
 
 function draw() {
     background(209, 80, 30)
-    bob.show()
-    bob.applyForce(gravity)
+    // coming back soon!
+    // for (let bob of bobs) {
+    //     bob.show()
+    //     // bob.applyForce(gravity)
+    //     bob.update()
+    //     bob.checkEdges()
+    // }
+
+    spring.applyForce()
     bob.update()
+    anchor.update()
+    bob.show()
     bob.checkEdges()
+
+    anchor.show()
+    anchor.checkEdges()
+
+    spring.show()
 }
